@@ -2,28 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - My PWA Todo</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#1976d2" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-  <nav class="navbar">
-    <a href="index.html"><span class="material-icons">arrow_back</span></a>
-    <span class="logo">⚙️ Settings</span>
-  </nav>
+  <header>
+    <h1>ℹ️ About</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active">About</a>
+    </nav>
+  </header>
 
-  <div class="app">
-    <h2>About This App</h2>
-    <p>This is a simple PWA ToDo mobile app with calendar support.</p>
-    <p>You can install it on your phone and use it offline.</p>
-  </div>
+  <main>
+    <section class="about-section">
+      <h2>About This App</h2>
+      <p>
+        This is a simple Progressive Web App (PWA) built with HTML, CSS, and JS.
+        It works offline and can be installed on your phone like a native app 🚀.
+      </p>
+    </section>
+  </main>
 
-  <footer class="bottom-nav">
-    <a href="index.html"><span class="material-icons">checklist</span><p>Tasks</p></a>
-    <a href="about.html" class="active"><span class="material-icons">settings</span><p>Settings</p></a>
+  <footer>
+    <p>Made with ❤️ PWA</p>
   </footer>
 </body>
 </html>
