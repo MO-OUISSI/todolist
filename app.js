@@ -1,68 +1,24 @@
-const taskInput = document.getElementById("taskInput");
-const dateInput = document.getElementById("dateInput");
-const addBtn = document.getElementById("addBtn");
-const taskList = document.getElementById("taskList");
-
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-
-function renderTasks() {
-  if (!taskList) return;
-  taskList.innerHTML = "";
-  tasks.forEach((task, index) => {
-    const card = document.createElement("div");
-    card.className = "task-card" + (task.completed ? " completed" : "");
-
-    const info = document.createElement("div");
-    info.className = "task-info";
-    info.innerHTML = `<h4>${task.text}</h4><small>${task.date ? "📅 " + task.date : ""}</small>`;
-
-    const actions = document.createElement("div");
-    actions.className = "actions";
-
-    const toggleBtn = document.createElement("button");
-    toggleBtn.innerHTML = `<span class="material-icons">${task.completed ? "undo" : "done"}</span>`;
-    toggleBtn.onclick = () => toggleComplete(index);
-
-    const deleteBtn = document.createElement("button");
-    deleteBtn.innerHTML = `<span class="material-icons">delete</span>`;
-    deleteBtn.onclick = () => deleteTask(index);
-
-    actions.appendChild(toggleBtn);
-    actions.appendChild(deleteBtn);
-
-    card.appendChild(info);
-    card.appendChild(actions);
-    taskList.appendChild(card);
-  });
-}
+const input = document.getElementById("taskInput");
+const addBtn = document.getElementById("addTask");
+const list = document.getElementById("taskList");
 
 function addTask() {
-  const text = taskInput.value.trim();
-  const date = dateInput.value;
-  if (text) {
-    tasks.push({ text, date, completed: false });
-    saveTasks();
-    renderTasks();
-    taskInput.value = "";
-    dateInput.value = "";
-  }
+  if (input.value.trim() === "") return;
+
+  const li = document.createElement("li");
+  li.textContent = input.value;
+  li.addEventListener("click", () => li.classList.toggle("done"));
+
+  const removeBtn = document.createElement("button");
+  removeBtn.textContent = "✖";
+  removeBtn.onclick = () => li.remove();
+  li.appendChild(removeBtn);
+
+  list.appendChild(li);
+  input.value = "";
 }
 
-function toggleComplete(index) {
-  tasks[index].completed = !tasks[index].completed;
-  saveTasks();
-  renderTasks();
-}
-
-function deleteTask(index) {
-  tasks.splice(index, 1);
-  saveTasks();
-  renderTasks();
-}
-
-function saveTasks() {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-}
-
-if (addBtn) addBtn.addEventListener("click", addTask);
-renderTasks();
+addBtn.addEventListener("click", addTask);
+input.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") addTask();
+});
