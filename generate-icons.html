@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Generator</title>
+</head>
+<body>
+    <h1>Focus Timer Icon Generator</h1>
+    <p>This page generates the required icons for the PWA. Right-click and save each icon.</p>
+    
+    <div id="icons"></div>
+    
+    <script>
+        const sizes = [16, 32, 72, 96, 128, 144, 152, 192, 384, 512];
+        const container = document.getElementById('icons');
+        
+        sizes.forEach(size => {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+            
+            // Background circle
+            ctx.fillStyle = '#6366f1';
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/2 - 2, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Timer icon (simplified)
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = size/16;
+            ctx.lineCap = 'round';
+            
+            // Clock face
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/3, 0, 2 * Math.PI);
+            ctx.stroke();
+            
+            // Hour hand
+            ctx.beginPath();
+            ctx.moveTo(size/2, size/2);
+            ctx.lineTo(size/2, size/2 - size/6);
+            ctx.stroke();
+            
+            // Minute hand
+            ctx.beginPath();
+            ctx.moveTo(size/2, size/2);
+            ctx.lineTo(size/2 + size/8, size/2);
+            ctx.stroke();
+            
+            // Center dot
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/32, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Add to page
+            const div = document.createElement('div');
+            div.style.margin = '10px';
+            div.style.display = 'inline-block';
+            div.style.textAlign = 'center';
+            
+            const img = document.createElement('img');
+            img.src = canvas.toDataURL();
+            img.style.border = '1px solid #ccc';
+            
+            const label = document.createElement('div');
+            label.textContent = `${size}x${size}`;
+            label.style.fontSize = '12px';
+            label.style.marginTop = '5px';
+            
+            div.appendChild(img);
+            div.appendChild(label);
+            container.appendChild(div);
+        });
+    </script>
+</body>
+</html>

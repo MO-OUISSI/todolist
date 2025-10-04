@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Timer - Pomodoro App</title>
+    <meta name="description" content="A clean and modern Pomodoro timer app for productivity">
+    <meta name="theme-color" content="#6366f1">
+    
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Focus Timer">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/icon-16x16.png">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🍅</span>
+                <span class="logo-text">Focus Timer</span>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </button>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active" data-page="home">Timer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#settings" class="nav-link" data-page="settings">Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#stats" class="nav-link" data-page="stats">Statistics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link" data-page="about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Timer Page -->
+        <div class="page active" id="home-page">
+            <div class="timer-container">
+                <div class="timer-header">
+                    <h1 class="timer-title">Focus Session</h1>
+                    <div class="timer-mode">
+                        <button class="mode-btn active" data-mode="focus">Focus</button>
+                        <button class="mode-btn" data-mode="short-break">Short Break</button>
+                        <button class="mode-btn" data-mode="long-break">Long Break</button>
+                    </div>
+                </div>
+                
+                <div class="timer-circle">
+                    <svg class="timer-svg" viewBox="0 0 100 100">
+                        <circle class="timer-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="timer-progress" cx="50" cy="50" r="45" id="progress-circle"></circle>
+                    </svg>
+                    <div class="timer-display">
+                        <div class="timer-time" id="timer-display">25:00</div>
+                        <div class="timer-status" id="timer-status">Ready to focus</div>
+                    </div>
+                </div>
+                
+                <div class="timer-controls">
+                    <button class="control-btn start-btn" id="start-btn">
+                        <span class="btn-icon">▶️</span>
+                        <span class="btn-text">Start</span>
+                    </button>
+                    <button class="control-btn pause-btn" id="pause-btn" style="display: none;">
+                        <span class="btn-icon">⏸️</span>
+                        <span class="btn-text">Pause</span>
+                    </button>
+                    <button class="control-btn reset-btn" id="reset-btn">
+                        <span class="btn-icon">🔄</span>
+                        <span class="btn-text">Reset</span>
+                    </button>
+                </div>
+                
+                <div class="session-info">
+                    <div class="session-count">
+                        <span class="session-label">Sessions completed:</span>
+                        <span class="session-number" id="session-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div class="page" id="settings-page">
+            <div class="page-header">
+                <h2>Settings</h2>
+            </div>
+            <div class="settings-container">
+                <div class="setting-group">
+                    <label for="focus-time">Focus Time (minutes)</label>
+                    <input type="number" id="focus-time" min="1" max="60" value="25">
+                </div>
+                <div class="setting-group">
+                    <label for="short-break-time">Short Break (minutes)</label>
+                    <input type="number" id="short-break-time" min="1" max="30" value="5">
+                </div>
+                <div class="setting-group">
+                    <label for="long-break-time">Long Break (minutes)</label>
+                    <input type="number" id="long-break-time" min="1" max="60" value="15">
+                </div>
+                <div class="setting-group">
+                    <label for="sessions-before-long-break">Sessions before long break</label>
+                    <input type="number" id="sessions-before-long-break" min="2" max="10" value="4">
+                </div>
+                <div class="setting-group">
+                    <label for="sound-enabled">
+                        <input type="checkbox" id="sound-enabled" checked>
+                        Enable sound notifications
+                    </label>
+                </div>
+                <div class="setting-group">
+                    <label for="auto-start-breaks">
+                        <input type="checkbox" id="auto-start-breaks">
+                        Auto-start breaks
+                    </label>
+                </div>
+                <button class="save-btn" id="save-settings">Save Settings</button>
+            </div>
+        </div>
+
+        <!-- Statistics Page -->
+        <div class="page" id="stats-page">
+            <div class="page-header">
+                <h2>Statistics</h2>
+            </div>
+            <div class="stats-container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-sessions">0</div>
+                        <div class="stat-label">Total Sessions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-focus-time">0h 0m</div>
+                        <div class="stat-label">Focus Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="today-sessions">0</div>
+                        <div class="stat-label">Today's Sessions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="streak">0</div>
+                        <div class="stat-label">Current Streak</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <h3>Weekly Progress</h3>
+                    <div class="chart" id="weekly-chart">
+                        <!-- Chart will be generated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <div class="page" id="about-page">
+            <div class="page-header">
+                <h2>About Focus Timer</h2>
+            </div>
+            <div class="about-container">
+                <div class="about-content">
+                    <div class="about-section">
+                        <h3>What is the Pomodoro Technique?</h3>
+                        <p>The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. It uses a timer to break work into intervals, traditionally 25 minutes in length, separated by short breaks.</p>
+                    </div>
+                    <div class="about-section">
+                        <h3>How to use this app:</h3>
+                        <ol>
+                            <li>Choose your focus time (default: 25 minutes)</li>
+                            <li>Start the timer and focus on your task</li>
+                            <li>Take a short break when the timer ends</li>
+                            <li>Repeat the cycle</li>
+                            <li>Take a longer break after 4 sessions</li>
+                        </ol>
+                    </div>
+                    <div class="about-section">
+                        <h3>Features:</h3>
+                        <ul>
+                            <li>Customizable timer durations</li>
+                            <li>Sound notifications</li>
+                            <li>Session tracking</li>
+                            <li>Statistics and progress</li>
+                            <li>Mobile-friendly design</li>
+                            <li>Works offline</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <span class="notification-text" id="notification-text"></span>
+            <button class="notification-close" id="notification-close">×</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>

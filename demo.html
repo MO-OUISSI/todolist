@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Timer Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            background: #f8fafc;
+        }
+        .demo-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            margin-bottom: 2rem;
+        }
+        .demo-button {
+            display: inline-block;
+            background: #6366f1;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: all 0.2s ease;
+        }
+        .demo-button:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .feature-card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid #6366f1;
+        }
+        .feature-card h3 {
+            margin: 0 0 0.5rem 0;
+            color: #1f2937;
+        }
+        .feature-card p {
+            margin: 0;
+            color: #6b7280;
+        }
+        .screenshot {
+            max-width: 100%;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1>🍅 Focus Timer - Pomodoro PWA</h1>
+        <p>A clean and modern Progressive Web App for the Pomodoro Technique, designed with mobile-first approach and beautiful UI.</p>
+        
+        <div style="text-align: center; margin: 2rem 0;">
+            <a href="index.html" class="demo-button">🚀 Launch App</a>
+            <a href="generate-icons.html" class="demo-button">🎨 Generate Icons</a>
+        </div>
+    </div>
+
+    <div class="demo-container">
+        <h2>✨ Features</h2>
+        <div class="feature-list">
+            <div class="feature-card">
+                <h3>⏰ Customizable Timer</h3>
+                <p>Set focus time, short break, and long break durations to match your workflow.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📱 Mobile-First Design</h3>
+                <p>Responsive design optimized for mobile devices with touch-friendly controls.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔔 Sound Notifications</h3>
+                <p>Audio alerts when sessions complete to keep you on track.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📊 Statistics Tracking</h3>
+                <p>Monitor your productivity with detailed stats and progress charts.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🎨 Clean UI</h3>
+                <p>Modern, minimalist design with smooth animations and beautiful gradients.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📱 PWA Support</h3>
+                <p>Install as a native app on your device with offline support.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="demo-container">
+        <h2>🚀 How to Use</h2>
+        <ol>
+            <li><strong>Open the app</strong> by clicking "Launch App" above</li>
+            <li><strong>Choose your mode</strong>: Focus, Short Break, or Long Break</li>
+            <li><strong>Start the timer</strong> and focus on your task</li>
+            <li><strong>Take breaks</strong> when the timer completes</li>
+            <li><strong>Track your progress</strong> in the Statistics page</li>
+        </ol>
+    </div>
+
+    <div class="demo-container">
+        <h2>📱 Installation as PWA</h2>
+        <h3>On Mobile (iOS/Android):</h3>
+        <ol>
+            <li>Open the app in your mobile browser</li>
+            <li>Look for "Add to Home Screen" option</li>
+            <li>Tap to install the app</li>
+        </ol>
+        
+        <h3>On Desktop:</h3>
+        <ol>
+            <li>Open the app in Chrome/Edge</li>
+            <li>Look for the install icon in the address bar</li>
+            <li>Click to install the app</li>
+        </ol>
+    </div>
+
+    <div class="demo-container">
+        <h2>🍅 Pomodoro Technique</h2>
+        <p>The Pomodoro Technique is a time management method developed by Francesco Cirillo:</p>
+        <ol>
+            <li><strong>Focus for 25 minutes</strong> on a single task</li>
+            <li><strong>Take a 5-minute break</strong></li>
+            <li><strong>Repeat 4 times</strong></li>
+            <li><strong>Take a longer 15-30 minute break</strong></li>
+        </ol>
+    </div>
+
+    <div class="demo-container">
+        <h2>⚙️ Customization</h2>
+        <ul>
+            <li>Adjust timer durations in Settings</li>
+            <li>Enable/disable sound notifications</li>
+            <li>Auto-start breaks option</li>
+            <li>Track your productivity statistics</li>
+        </ul>
+    </div>
+
+    <div class="demo-container">
+        <h2>🌐 Browser Support</h2>
+        <ul>
+            <li>Chrome/Edge (recommended)</li>
+            <li>Firefox</li>
+            <li>Safari (iOS 11.3+)</li>
+            <li>All modern browsers with PWA support</li>
+        </ul>
+    </div>
+
+    <div class="demo-container">
+        <h2>🛠️ Development</h2>
+        <p>To run locally:</p>
+        <ol>
+            <li>Open <code>index.html</code> in a web browser</li>
+            <li>Or serve with a local server for full PWA features</li>
+        </ol>
+        
+        <p><strong>Note:</strong> For full PWA functionality, serve the files from a web server (not file:// protocol).</p>
+    </div>
+</body>
+</html>
